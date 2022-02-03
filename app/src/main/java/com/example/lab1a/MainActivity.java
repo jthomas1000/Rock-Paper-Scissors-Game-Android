@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private int playerCounter = 0;
     private int computerCounter = 0;
     Random random = new Random();
-    private int holdNum;
+
 
 
     private void selectWeapon(Weapon playerWeapon) {
@@ -59,95 +59,89 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selectWeapon(Weapon.PAPER);
-                if ( holdNum == 0 ){
+                if ( random.nextInt(3) == 0 ){
                     TextView wp = (TextView)view.getRootView().findViewById(R.id.winner_condition);
                     wp.setText("Player wins...Paper covers Rock!");
+                    TextView r = findViewById(R.id.computers_weapon);
+                    r.setText("Computer's Weapon: Rock");
                     playerCounter++;
                 }
-                else if ( holdNum == 1){
+                else if ( random.nextInt(3) == 1){
                     TextView rs = (TextView)view.getRootView().findViewById(R.id.winner_condition);
-                    rs.setText("It's a Tie!"); }
+                    rs.setText("It's a Tie!");
+                    TextView p = findViewById(R.id.computers_weapon);
+                    p.setText("Computer's Weapon: Paper");}
 
-                else if (holdNum == 2){
+                else if (random.nextInt(3) == 2){
                     TextView pp = (TextView)view.getRootView().findViewById(R.id.winner_condition);
-                    pp.setText("Player wins...Scissors cuts Paper!");
-                    playerCounter++;
+                    pp.setText("Computer wins...Scissors cuts Paper!");
+                    TextView s = findViewById(R.id.computers_weapon);
+                    s.setText("Computer's Weapon: Scissors");
+                    computerCounter++;
                 }
                 TextView counter = (TextView)view.getRootView().findViewById(R.id.winner_counter);
-                counter.setText("Player Wins: " + playerCounter + "Computer Wins: " + computerCounter);
+                counter.setText("Player Wins: " + playerCounter + " Computer Wins: " + computerCounter);
             }
-        },
+        });
 
         findViewById(R.id.scissorButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectWeapon(Weapon.SCISSORS);
-                if (holdNum == 0 ){
+                if (random.nextInt(3) == 0 ){
                     TextView ab = (TextView)view.getRootView().findViewById(R.id.winner_condition);
                     ab.setText("Computer wins...Rock smashes Scissors!");
+                    TextView r = findViewById(R.id.computers_weapon);
+                    r.setText("Computer's Weapon: Rock");
                     computerCounter++;
                 }
-                else if (holdNum == 1 ){
+                else if (random.nextInt(3) == 1 ){
                     TextView cp = (TextView)view.getRootView().findViewById(R.id.winner_condition);
                     cp.setText("Player wins...Scissors cuts Paper!");
+                    TextView p = findViewById(R.id.computers_weapon);
+                    p.setText("Computer's Weapon: Paper");
                     playerCounter++;
                 }
-                else if (holdNum == 2  ){
+                else if (random.nextInt(3) == 2  ){
                     TextView hp = (TextView)view.getRootView().findViewById(R.id.winner_condition);
-                    hp.setText("It's a Tie!"); }
+                    hp.setText("It's a Tie!");
+                    TextView s = findViewById(R.id.computers_weapon);
+                    s.setText("Computer's Weapon: Scissors");}
 
                 TextView counter = (TextView)view.getRootView().findViewById(R.id.winner_counter);
-                counter.setText("Player Wins: " + playerCounter + "Computer Wins: " + computerCounter);
+                counter.setText("Player Wins: " + playerCounter + " Computer Wins: " + computerCounter);
             }
-        },
+        });
 
         findViewById(R.id.rockButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectWeapon(Weapon.ROCK);
 
-                if ( holdNum == 0 ){
+                if ( random.nextInt(3) == 0 ){
                     TextView wc = (TextView)view.getRootView().findViewById(R.id.winner_condition);
                     wc.setText("It's a Tie!");
+                    TextView r = findViewById(R.id.computers_weapon);
+                    r.setText("Computer's Weapon: Rock");
                 }
-                else if ( holdNum  == 1 ){
+                else if ( random.nextInt(3)  == 1 ){
                     TextView wr = (TextView)view.getRootView().findViewById(R.id.winner_condition);
                     wr.setText("Computer wins...Paper covers Rock!");
+                    TextView p = findViewById(R.id.computers_weapon);
+                    p.setText("Computer's Weapon: Paper");
                     computerCounter++;
                 }
-                else if ( holdNum == 2){
+                else if ( random.nextInt(3) == 2){
                     TextView wb = (TextView)view.getRootView().findViewById(R.id.winner_condition);
                     wb.setText("Player wins...Rock smashes Scissors!");
+                    TextView s = findViewById(R.id.computers_weapon);
+                    s.setText("Computer's Weapon: Scissors");
                     playerCounter++;
                 }
                 TextView counter = (TextView)view.getRootView().findViewById(R.id.winner_counter);
-                counter.setText("Player Wins: " + playerCounter + "Computer Wins: " + computerCounter);
+                counter.setText("Player Wins: " + playerCounter + " Computer Wins: " + computerCounter);
             }
-        },
+        });
 
-         switch ( random.nextInt(3)){
-            case 0:
-                TextView r = findViewById(R.id.computers_weapon);
-                r.setText("Computer's Weapon: Rock");
-                holdNum = 0;
-                break;
-
-            case 1:
-                TextView p = findViewById(R.id.computers_weapon);
-                p.setText("Computer's Weapon: Paper");
-                holdNum = 1;
-                break;
-
-            case 2:
-                TextView s = findViewById(R.id.computers_weapon);
-                s.setText("Computer's Weapon: Scissors");
-                holdNum = 2;
-                break;
-
-            default:
-                TextView e = findViewById(R.id.computers_weapon);
-                e.setText("error");
-                break;
-    }
     }
 }
